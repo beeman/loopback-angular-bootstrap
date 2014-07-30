@@ -4,7 +4,7 @@ module.exports = function(grunt) {
       services: {
         options: {
           input: './app.js',
-          output: '../client/js/lb-services.js'
+          output: '../client/app/scripts/lb-services.js'
         }
       }
     },
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         sections: [{
           id: 'lbServices',
           title: 'LoopBack Services',
-          scripts: ['../client/js/lb-services.js']
+          scripts: ['../client/app/scripts/lb-services.js']
         }]
       }]
     }
