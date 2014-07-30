@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="starter" ng-controller="AppCtrl">
+  <head>
+    <meta charset="utf-8">
+    <title>{{appName}}</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- your app's css -->
+    <link href="css/app.css" rel="stylesheet">
+
+    <!-- ionic/angularjs scripts -->
+    <script src="js/angular/angular.js"></script>
+    <script src="js/angular/angular-route.js"></script>
+    <script src="js/angular/angular-resource.js"></script>
+
+
+    <!-- your app's script -->
+    <script src="js/lb-services.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+  </head>
+
+  <!-- 'starter' is the name of this angular module (js/app.js)-->
+  <body>
+    <div class="container">
+      <ng-view></ng-view>
+    </div>
+  </body>
+</html>
