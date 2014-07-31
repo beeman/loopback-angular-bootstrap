@@ -62,6 +62,12 @@ try {
  *   });
  */
 
+var cors = require('cors');
+app.use(cors());
+
+// var health = require('express-ping');
+// app.use(health.ping());
+
 // Let express routes handle requests that were not handled
 // by any of the middleware registered above.
 // This way LoopBack REST and API Explorer take precedence over

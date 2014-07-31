@@ -1,5 +1,7 @@
 {
   "email": {
+    "dataSource": "mail",
+    "public": false,
     "options": {
       "base": "Email",
       "acls": [
@@ -10,11 +12,11 @@
           "principalId": "$everyone"
         }
       ]
-    },
-    "dataSource": "mail",
-    "public": false
+    }
   },
   "user": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "base": "User",
       "relations": {
@@ -30,6 +32,11 @@
         "transactions": {
           "model": "transaction",
           "type": "hasMany"
+        },
+        "items": {
+          "model": "item",
+          "type": "hasMany",
+          "foreignKey": "userId"
         }
       },
       "acls": [
@@ -40,11 +47,11 @@
           "principalId": "$everyone"
         }
       ]
-    },
-    "dataSource": "db",
-    "public": true
+    }
   },
   "accessToken": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "base": "AccessToken",
       "baseUrl": "access-tokens",
@@ -62,11 +69,11 @@
           "property": "create"
         }
       ]
-    },
-    "dataSource": "db",
-    "public": true
+    }
   },
   "bank": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "relations": {
         "users": {
@@ -92,12 +99,11 @@
           "principalId": "$everyone"
         }
       ]
-    },
-    "properties": {},
-    "public": true,
-    "dataSource": "db"
+    }
   },
   "account": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "relations": {
         "transactions": {
@@ -125,12 +131,11 @@
           "property": "removeById"
         }
       ]
-    },
-    "properties": {},
-    "public": true,
-    "dataSource": "db"
+    }
   },
   "transaction": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "acls": [
         {
@@ -140,12 +145,11 @@
           "principalId": "$everyone"
         }
       ]
-    },
-    "properties": {},
-    "public": true,
-    "dataSource": "db"
+    }
   },
   "alert": {
+    "dataSource": "db",
+    "public": true,
     "options": {
       "acls": [
         {
@@ -155,9 +159,10 @@
           "principalId": "$everyone"
         }
       ]
-    },
-    "properties": {},
-    "public": true,
-    "dataSource": "db"
+    }
+  },
+  "item": {
+    "dataSource": "db",
+    "public": true
   }
 }

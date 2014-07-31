@@ -2,7 +2,9 @@ var app = require('../app');
 var user = app.models.user;
 var account = app.models.account;
 var transaction = app.models.transaction;
-var TOTAL_TRANS = 100;
+var item = app.models.item;
+
+var TOTAL_TRANS = 15;
 var ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
 var ONE_MONTH = ONE_YEAR / 12;
 
@@ -10,28 +12,26 @@ user.afterRemote('findById', function(ctx, user, next) {
   // override the result completely
   var result = ctx.result = {};
 
-  user.transactions(function(err, transactions) {
-    result.email = user.email;
-    result.firstName = user.firstName;
-    result.lastName = user.lastName;
-    result.transactions = transactions;
-    result.balance = calculateBalance(transactions);
 
-    transaction.find({
-      where: {
-        userId: user.id,
-        time: {gt: Date.now() - ONE_MONTH}
-      }
-    }, function(err, transactions) {
-      result.totalEarned = transactions
-        .filter(is('credit'))
-        .reduce(sum, 0);
-      result.totalSpent = transactions
-        .filter(is('debit'))
-        .reduce(sum, 0);
-      next();
+    user.items(function(err, items) {
+      console.log(items);
+
+      result.email = user.email;
+      result.firstName = user.firstName;
+      result.lastName = user.lastName;
+      result.items = items;
+
+      item.find({
+        where: {
+          userId: user.id
+        }
+      }, function(err, items) {
+        next();
+      });
+
+
     });
-  });
+
 });
 
 function is(type) {
@@ -78,6 +78,7 @@ function createAccount(err, testUser) {
     testUser.accountId = acct.id;
     testUser.save(function() {
       createTransactions(err, acct, testUser);
+      createItems(err, acct, testUser);
     });
   });
 }
@@ -112,6 +113,31 @@ function generateTransactions(account, user, total) {
   }
 
   return transactions;
+}
+
+
+function createItems(err, acct, u) {
+  item.create(generateItems(acct, u, TOTAL_TRANS), function() {
+    // done
+  })
+}
+
+function generateItems(account, user, total) {
+  var items = [];
+  var item;
+
+  while(items.length < total) {
+    item = {
+      name: 'Item ' + items.length,
+      description: 'Description for item ' + items.length,
+      userId: user.id
+    };
+
+    item.time = Date.now() - rand(0, ONE_YEAR);
+    items.push(item);
+  }
+
+  return items;
 }
 
 function randDollarAmt(min, max) {
