@@ -11,7 +11,7 @@ angular.module('loopbackApp')
   .config(function($stateProvider) {
     $stateProvider.state('app.home', {
       url: '',
-      templateUrl: 'partials/home.html',
+      templateUrl: 'views/home.html',
       controller: function($scope) {
         $scope.message = 'Welcome home, this is AngularJS!';
       }
