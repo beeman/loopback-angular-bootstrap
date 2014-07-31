@@ -81,6 +81,12 @@ angular.module('loopbackApp', [
         controller: 'UsersCtrl'
       })
 
+    .state('sandbox', {
+      url: '/sandbox',
+      templateUrl: 'views/sandbox.html',
+      controller: 'SandboxCtrl'
+    })
+
 
 
     .state('login', {
