@@ -26,13 +26,10 @@ angular.module('loopbackApp')
 
     $scope.menuoptions = [{
       name: 'Home',
-      sref: '.home'
+      sref: 'app.home'
     } , {
       name: 'Items',
-      sref: '.items.list'
-    // } , {
-    //   name: 'Users',
-    //   sref: '.users'
+      sref: 'app.items.list'
     }];
 
     $scope.toplinks = [{
