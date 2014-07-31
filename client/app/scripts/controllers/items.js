@@ -51,8 +51,6 @@ angular.module('loopbackApp')
     $scope.item = {};
   }
 
-  $scope.message = 'Manage your items here!';
-
   function loadItems() {
     $scope.items = Item.find();
   }

@@ -11,10 +11,7 @@ angular.module('loopbackApp')
   .config(function($stateProvider) {
     $stateProvider.state('app.home', {
       url: '',
-      templateUrl: 'views/home.html',
-      controller: function($scope) {
-        $scope.message = 'Welcome home, this is AngularJS!';
-      }
+      templateUrl: 'views/home.html'
     });
   })
   .controller('HomeCtrl', function ($scope) {

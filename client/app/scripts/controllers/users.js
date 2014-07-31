@@ -16,8 +16,6 @@ angular.module('loopbackApp')
       controller: 'UsersCtrl'
     });
   })
-  .controller('UsersCtrl', function($scope) {
-
-    $scope.message = 'User management goes here!';
+  .controller('UsersCtrl', function() {
 
   });
