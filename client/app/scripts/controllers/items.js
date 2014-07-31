@@ -47,6 +47,8 @@ angular.module('loopbackApp')
     }, function() {}, function(err) {
       console.log(err);
     });
+  } else {
+    $scope.item = {};
   }
 
   $scope.message = 'Manage your items here!';
@@ -57,15 +59,6 @@ angular.module('loopbackApp')
 
   loadItems();
 
-  $scope.save = function() {
-    Item.upsert($scope.item, function() {
-      $notification.success('Item added', 'Your item is safe with us!');
-      $state.go('^.list');
-    }, function(err) {
-      console.log(err);
-    });
-  };
-
   $scope.delete = function(id) {
     if (confirm('Are you sure?') === false) {
       $notification.success('Delete canceled!', 'Yay!!');
@@ -74,9 +67,50 @@ angular.module('loopbackApp')
     Item.deleteById(id, function() {
       $notification.success('Item deleted', 'Your item is deleted!');
       loadItems();
+      $state.go('app.items.list');
+      console.log();
     }, function(err) {
       $notification.success('Error deleting item', 'Your item is note deleted! ' + err);
     });
 
   };
+
+  $scope.formFields = [{
+    key: 'name',
+    type: 'text',
+    label: 'Name',
+    required: true
+  }, {
+    key: 'description',
+    type: 'text',
+    label: 'Description',
+    required: true
+  }];
+
+  $scope.formOptions = {
+
+      //Set the id of the form
+      uniqueFormId: true,
+
+      //Hide the submit button that is added automaticaly
+      //default: false
+      hideSubmit: false,
+
+      //Set the text on the default submit button
+      //default: Submit
+      submitCopy: 'Save'
+  };
+
+  $scope.onSubmit = function() {
+
+    Item.upsert($scope.item, function() {
+      $notification.success('Item added', 'Your item is safe with us!');
+      $state.go('^.list');
+    }, function(err) {
+      console.log(err);
+    });
+
+  };
+
+
 });
