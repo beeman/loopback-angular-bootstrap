@@ -8,6 +8,15 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
+  .config(function($stateProvider) {
+    $stateProvider
+    .state('app', {
+      abstract: true,
+      url: '/app',
+      templateUrl: 'views/app.html',
+      controller: 'MainCtrl'
+    });
+  })
   .controller('MainCtrl', function ($scope, $state, $location, $notification, AppAuth, User) {
 
     AppAuth.ensureHasCurrentUser(User);

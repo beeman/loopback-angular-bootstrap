@@ -8,6 +8,13 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
+  .config(function($stateProvider) {
+    $stateProvider.state('sandbox', {
+      url: '/sandbox',
+      templateUrl: 'views/sandbox.html',
+      controller: 'SandboxCtrl'
+    });
+  })
   .controller('SandboxCtrl', function ($scope, $notification) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

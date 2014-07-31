@@ -20,86 +20,20 @@ angular.module('loopbackApp', [
   'notifications'
 ])
 
-.config(function($compileProvider) {
-  // Needed for routing to work
-  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-})
-
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/app');
-
-  $stateProvider
-    .state('app', {
-      abstract: true,
-      url: '/app',
-      templateUrl: 'views/app.html',
-      controller: 'MainCtrl'
-    })
-
-      .state('app.home', {
-        url: '',
-        templateUrl: 'partials/home.html',
-        controller: function($scope) {
-          $scope.message = 'Welcome home, this is AngularJS!';
-        }
-      })
-
-      .state('app.items', {
-        abstract: true,
-        url: '/items',
-        templateUrl: 'partials/items.html',
-        controller: 'ItemsCtrl'
-      })
-
-        .state('app.items.list', {
-          url: '',
-          templateUrl: 'partials/items.list.html',
-          controller: 'ItemsCtrl'
-        })
-        .state('app.items.add', {
-          url: '/add',
-          templateUrl: 'partials/items.form.html',
-          controller: 'ItemsCtrl'
-        })
-        .state('app.items.edit', {
-          url: '/:id/edit',
-          templateUrl: 'partials/items.form.html',
-          controller: 'ItemsCtrl'
-        })
-        .state('app.items.view', {
-          url: '/:id',
-          templateUrl: 'partials/items.view.html',
-          controller: 'ItemsCtrl'
-        })
-
-
-
-      .state('app.users', {
-        url: '/users',
-        templateUrl: 'partials/users.html',
-        controller: 'UsersCtrl'
-      })
-
-    .state('sandbox', {
-      url: '/sandbox',
-      templateUrl: 'views/sandbox.html',
-      controller: 'SandboxCtrl'
-    })
-
-
-
-    .state('login', {
-      url: '/login',
-      template: '<login></login>',
-      controller: 'LoginCtrl'
-    })
-
+  $stateProvider.state('login', {
+    url: '/login',
+    template: '<login></login>',
+    controller: 'LoginCtrl'
+  })
     .state('register', {
       url: '/register',
       template: '<register></register>',
       controller: 'LoginCtrl'
     });
+
+  $urlRouterProvider.otherwise('/app');
 
 })
 
