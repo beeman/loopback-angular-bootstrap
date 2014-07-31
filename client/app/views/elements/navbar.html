@@ -12,11 +12,11 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in menuoptions"><a href="" ng-click="item.action()">{{item.text}}</a></li>
+        <li ng-repeat="item in menuoptions"><a href="" ui-sref="{{item.sref}}">{{item.name}}</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="">{{currentUser.firstName}} {{currentUser.lastName}}</a></li>
-        <li ng-repeat="item in toplinks"><a href="" ng-click="item.action()">{{item.text}}</a></li>
+        <li ng-repeat="item in toplinks"><a href="" ng-click="item.action()">{{item.name}}</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->

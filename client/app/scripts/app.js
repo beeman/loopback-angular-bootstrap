@@ -59,7 +59,12 @@ angular.module('loopbackApp', [
         })
         .state('app.items.add', {
           url: '/add',
-          templateUrl: 'partials/items.add.html',
+          templateUrl: 'partials/items.form.html',
+          controller: 'ItemsCtrl'
+        })
+        .state('app.items.edit', {
+          url: '/:id/edit',
+          templateUrl: 'partials/items.form.html',
           controller: 'ItemsCtrl'
         })
         .state('app.items.view', {
@@ -87,7 +92,7 @@ angular.module('loopbackApp', [
     .state('register', {
       url: '/register',
       template: '<register></register>',
-      controller: 'RegisterCtrl'
+      controller: 'LoginCtrl'
     });
 
 })

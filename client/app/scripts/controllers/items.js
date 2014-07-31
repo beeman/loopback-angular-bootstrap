@@ -8,27 +8,45 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
-  .controller('ItemsCtrl', function ($scope, $state, $stateParams, $notification) {
+  .controller('ItemsCtrl', function ($scope, $state, $stateParams, $notification, Item) {
 
-    $scope.item = $stateParams.id;
+    var itemId = $stateParams.id;
 
-    $scope.newItem = {};
+    if(itemId) {
+      $scope.item = Item.findById({id: itemId}, function() {
+      }, function(err) {
+        console.log(err);
+      });
+    }
 
     $scope.message = 'Manage your items here!';
 
-    $scope.items = [
-      {id: 1, 'name': 'Item 1 '},
-      {id: 2, 'name': 'Item 2 '},
-      {id: 3, 'name': 'Item 3 '},
-      {id: 4, 'name': 'Item 4 '},
-      {id: 5, 'name': 'Item 5 '},
-      {id: 6, 'name': 'Item 6 '}
-    ];
-
-    $scope.add = function() {
-      console.log('Adding new item!');
-      console.log($scope.newItem);
-      $state.go('^.list');
-      $notification.success('Item added', 'Your item is safe with us!');
+    function loadItems() {
+      $scope.items = Item.find();
     }
+
+    loadItems();
+
+    $scope.save = function() {
+      Item.upsert($scope.item, function (){
+        $notification.success('Item added', 'Your item is safe with us!');
+        $state.go('^.list');
+      }, function(err) {
+        console.log(err);
+      });
+    };
+
+    $scope.delete = function(id) {
+      if(confirm('Are you sure?') === false) {
+        $notification.success('Delete canceled!', 'Yay!!');
+        return false;
+      }
+      Item.deleteById(id, function(){
+        $notification.success('Item deleted', 'Your item is deleted!');
+        loadItems();
+      }, function(err) {
+        $notification.success('Error deleting item', 'Your item is note deleted! ' + err);
+      });
+
+    };
 });

@@ -1,6 +1,8 @@
 
-
-<a href="" ui-sref="^.list" class="btn btn-default">Back</a>
+<h4>
+  <a href="" ui-sref="^.list" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
+  {{item.name}}
+  <a href="" ui-sref="^.edit({id: item.id})" class="btn btn-default pull-right"><i class="fa fa-pencil"></i></a>
+</h4>
 <hr>
-
 <pre>{{item | json}}</pre>

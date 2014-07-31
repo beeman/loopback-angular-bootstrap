@@ -23,9 +23,9 @@ angular.module('loopbackApp')
           this.currentUser = User.getCurrent(function() {
             // success
           }, function(response) {
-            console.log('User.getCurrent() err', arguments);
+            console.log('User.getCurrent() err', arguments, response);
           });
         }
       }
-    }
+    };
   });

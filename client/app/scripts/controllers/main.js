@@ -16,24 +16,18 @@ angular.module('loopbackApp')
     $scope.appName = 'Loopback + AngularJS + Bootstrap';
 
     $scope.menuoptions = [{
-      text: 'Home',
-      action: function() {
-        $location.path('/home');
-      }
+      name: 'Home',
+      sref: '.home'
     } , {
-      text: 'Dashboard',
-      action: function() {
-        $location.path('/dashboard');
-      }
-    } , {
-      text: 'App',
-      action: function() {
-        $location.path('/app');
-      }
+      name: 'Items',
+      sref: '.items.list'
+    // } , {
+    //   name: 'Users',
+    //   sref: '.users'
     }];
 
     $scope.toplinks = [{
-      text: 'Logout',
+      name: 'Logout',
       action: function() {
         User.logout(function() {
           $scope.currentUser = AppAuth.currentUser = null;

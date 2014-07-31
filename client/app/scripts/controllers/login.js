@@ -36,4 +36,44 @@ angular.module('loopbackApp')
         }
       );
     };
+
+    $scope.registration = {
+      firstName: 'me',
+      lastName: 'me',
+      email: 'me@me.me',
+      password: 'meme'
+    };
+
+    $scope.confirmPassword = 'meme';
+
+    $scope.register = function() {
+
+      console.log('reg');
+
+      $scope.user = User.save($scope.registration,
+        function() {
+
+          $scope.loginResult = User.login({
+              include: 'user',
+              rememberMe: true
+            }, $scope.registration,
+            function() {
+              AppAuth.currentUser = $scope.loginResult.user;
+              $notification.success('Registered', 'You are registered!');
+              $location.path('/');
+            },
+            function(res) {
+              $notification.warning('Error signin in after registration!', res.data.error.message);
+              $scope.loginError = res.data.error;
+            }
+          );
+
+        },
+        function(res) {
+          $notification.warning('Error registering!', res.data.error.message);
+          $scope.registerError = res.data.error;
+        }
+      );
+    };
+
   });
