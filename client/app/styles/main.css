@@ -40,5 +40,7 @@ body {
 
 .form-signin input {
   margin: 10px 0px;
-
+}
+.form-signin input[type="checkbox"] {
+  margin: 4px 0 0 -20px;
 }

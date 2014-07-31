@@ -11,13 +11,14 @@ angular.module('loopbackApp')
   .controller('LoginCtrl', function ($scope, $routeParams, $location, $notification, User, AppAuth) {
     $scope.credentials = {
       email: 'foo@bar.com',
-      password: '123456'
+      password: '123456',
+      rememberMe: true
     };
 
     $scope.login = function() {
       $scope.loginResult = User.login({
           include: 'user',
-          rememberMe: true
+          rememberMe: $scope.credentials.rememberMe
         }, $scope.credentials,
         function() {
           var next = $location.nextAfterLogin || '/';
