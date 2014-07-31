@@ -22,8 +22,6 @@ angular.module('loopbackApp')
     AppAuth.ensureHasCurrentUser(User);
     $scope.currentUser = AppAuth.currentUser;
 
-    $scope.appName = 'Loopback + AngularJS + Bootstrap';
-
     $scope.menuoptions = [{
       name: 'Home',
       sref: 'app.home'

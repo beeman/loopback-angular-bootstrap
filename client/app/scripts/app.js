@@ -21,6 +21,12 @@ angular.module('loopbackApp', [
   'formly'
 ])
 
+.controller('LayoutCtrl', function ($scope) {
+
+  $scope.appName = "Loopback - Angular - Bootstrap";
+
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('login', {
