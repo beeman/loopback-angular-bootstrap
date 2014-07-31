@@ -1,0 +1,22 @@
+<div ng-controller="MainCtrl">
+
+  <navbar></navbar>
+
+  <div class="row">
+    <div class="col-md-2">
+
+
+      <ul class='nav nav-stacked'>
+        <li><a href="" ui-sref=".home">Home</a></li>
+        <li><a href="" ui-sref=".items.list">Items</a></li>
+        <li><a href="" ui-sref=".users">Users</a></li>
+
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div ui-view></div>
+    </div>
+  </div>
+
+</div>
+<div notifications="bottom right"></div>

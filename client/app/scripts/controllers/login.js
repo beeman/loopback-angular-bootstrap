@@ -8,7 +8,7 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
-  .controller('LoginCtrl', function ($scope, $routeParams, User, $location, AppAuth) {
+  .controller('LoginCtrl', function ($scope, $routeParams, $location, $notification, User, AppAuth) {
     $scope.credentials = {
       email: 'foo@bar.com',
       password: '123456'
@@ -23,6 +23,7 @@ angular.module('loopbackApp')
           var next = $location.nextAfterLogin || '/';
           $location.nextAfterLogin = null;
           AppAuth.currentUser = $scope.loginResult.user;
+          $notification.success('Logged in', 'You are logged in!');
           $location.path(next);
         },
         function(res) {

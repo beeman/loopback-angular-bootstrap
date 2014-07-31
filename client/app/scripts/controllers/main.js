@@ -8,7 +8,7 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
-  .controller('MainCtrl', function ($scope, $location, AppAuth, User) {
+  .controller('MainCtrl', function ($scope, $state, $location, $notification, AppAuth, User) {
 
     AppAuth.ensureHasCurrentUser(User);
     $scope.currentUser = AppAuth.currentUser;
@@ -20,6 +20,16 @@ angular.module('loopbackApp')
       action: function() {
         $location.path('/home');
       }
+    } , {
+      text: 'Dashboard',
+      action: function() {
+        $location.path('/dashboard');
+      }
+    } , {
+      text: 'App',
+      action: function() {
+        $location.path('/app');
+      }
     }];
 
     $scope.toplinks = [{
@@ -27,7 +37,8 @@ angular.module('loopbackApp')
       action: function() {
         User.logout(function() {
           $scope.currentUser = AppAuth.currentUser = null;
-          $location.path('/');
+          $state.go('login');
+          $notification.info('Logged out', 'You are logged out!');
         });
       }
     }];
