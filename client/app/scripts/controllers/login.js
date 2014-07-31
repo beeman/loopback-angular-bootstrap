@@ -24,9 +24,14 @@ angular.module('loopbackApp')
           $location.nextAfterLogin = null;
           AppAuth.currentUser = $scope.loginResult.user;
           $notification.success('Logged in', 'You are logged in!');
+
+          if(next === '/login') {
+            next = '/';
+          }
           $location.path(next);
         },
         function(res) {
+          $notification.warning('Error signin in!', res.data.error.message);
           $scope.loginError = res.data.error;
         }
       );

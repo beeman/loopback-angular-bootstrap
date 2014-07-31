@@ -8,7 +8,7 @@
  * Controller of the loopbackApp
  */
 angular.module('loopbackApp')
-  .controller('RegisterCtrl', function($scope, $routeParams, User, $location, AppAuth) {
+  .controller('RegisterCtrl', function($scope, $routeParams, $location, $notification, User, AppAuth) {
     $scope.registration = {
       firstName: 'me',
       lastName: 'me',
@@ -25,8 +25,10 @@ angular.module('loopbackApp')
       $scope.user = User.save($scope.registration,
         function() {
           $location.path('/login');
+          $notification.success('You are now registered!', 'Please log in!');
         },
         function(res) {
+          $notification.warning('Error registering!', res.data.error.message);
           $scope.registerError = res.data.error;
         }
       );
