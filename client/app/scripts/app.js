@@ -17,7 +17,8 @@ angular.module('loopbackApp', [
   'ngTouch',
   'ui.router',
   'lbServices',
-  'notifications'
+  'notifications',
+  'formly'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
