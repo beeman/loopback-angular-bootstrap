@@ -12,27 +12,27 @@ angular.module('loopbackApp')
     $stateProvider.state('app.items', {
       abstract: true,
       url: '/items',
-      templateUrl: 'partials/items.html',
+      templateUrl: 'partials/items/main.html',
       controller: 'ItemsCtrl'
     })
     .state('app.items.list', {
       url: '',
-      templateUrl: 'partials/items.list.html',
+      templateUrl: 'partials/items/list.html',
       controller: 'ItemsCtrl'
     })
     .state('app.items.add', {
       url: '/add',
-      templateUrl: 'partials/items.form.html',
+      templateUrl: 'partials/items/form.html',
       controller: 'ItemsCtrl'
     })
     .state('app.items.edit', {
       url: '/:id/edit',
-      templateUrl: 'partials/items.form.html',
+      templateUrl: 'partials/items/form.html',
       controller: 'ItemsCtrl'
     })
     .state('app.items.view', {
       url: '/:id',
-      templateUrl: 'partials/items.view.html',
+      templateUrl: 'partials/items/view.html',
       controller: 'ItemsCtrl'
     });
   })
